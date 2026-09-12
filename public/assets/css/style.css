@@ -143,13 +143,18 @@ body {
     background-position: 0 0, 2px 2px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+img, svg {
+    max-width: 100%;
 }
 
 /* --------------------------------------------------------------------------
    4. Skip Link & Accessibility
    -------------------------------------------------------------------------- */
 .skip-link {
-    position: absolute;
+    position: fixed;
     top: -120px;
     left: 1rem;
     background-color: var(--tomato);
@@ -157,15 +162,16 @@ body {
     padding: 0.65rem 1.25rem;
     font-family: var(--font-mono);
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     border-radius: var(--radius-sm);
     box-shadow: 0 4px 12px rgba(201, 76, 56, 0.35);
     z-index: 9999;
-    transition: top var(--dur-quick) var(--ease-out-smooth);
+    transition: top 150ms var(--ease-out-smooth);
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:focus-visible {
     top: 1rem;
     outline: 2px solid var(--basil);
     outline-offset: 3px;
@@ -818,7 +824,7 @@ body {
 
 .about-layout {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
 }
@@ -1339,7 +1345,7 @@ body {
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 860px) {
     /* Header Single-Row Horizontally Scrollable Rail */
     .header-container {
         min-height: 3.75rem;
@@ -1375,7 +1381,9 @@ body {
         font-size: 0.875rem;
         white-space: nowrap;
     }
+}
 
+@media (max-width: 640px) {
     .page-title {
         font-size: 1.75rem;
     }
@@ -1402,6 +1410,39 @@ body {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
+    }
+
+    .flow-section,
+    .storage-dispatch-memo {
+        padding: 1.25rem;
+    }
+
+    .flow-node {
+        gap: 0.85rem;
+    }
+
+    .node-track {
+        width: 2.25rem;
+    }
+
+    .oversized-num {
+        font-size: 1.35rem;
+        padding: 0.2rem 0.35rem;
+    }
+
+    .node-card {
+        padding: 0.85rem 1rem;
+        min-width: 0;
+    }
+
+    .flow-step-text code {
+        word-break: break-all;
+    }
+
+    .ledger-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
     }
 
     /* Small Screens Receipt-Strip Conversion for Tables */
