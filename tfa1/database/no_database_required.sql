@@ -1,0 +1,29 @@
+-- ====================================================================
+-- IT0049 (Web System Technologies) - Technical Formative Assessment 1
+-- Project: CodeIgniter 4 POS Foundations
+-- File: no_database_required.sql
+-- ====================================================================
+--
+-- SUBMISSION REQUIREMENT NOTE:
+-- The laboratory instructions specify:
+-- "A link to a GitHub repository containing your raw project files, including your database export."
+--
+-- DESIGN DECISION & ARCHITECTURAL SCOPE:
+-- For Technical Formative Assessment 1 (TFA1), the activity guidelines explicitly
+-- stipulate that no runtime database is involved:
+--
+-- 1. "The Customer Accounts and User Accounts pages will use a static PHP array
+--    as a temporary data source - no database is involved yet."
+-- 2. "This activity focuses on the routing, controller, and view layers only -
+--    the data layer comes in the next module."
+-- 3. "A static PHP array is a simple way to represent a list of records before
+--    a real database is introduced."
+--
+-- As designed by the course specification, all sample records are housed
+-- directly within the respective controller action methods:
+--   - App\Controllers\Customers::index() -> $customers array (5 sample records)
+--   - App\Controllers\Users::index()     -> $users array (5 sample records)
+--
+-- Consequently, this SQL artifact contains no schema definitions or DDL/DML statements.
+-- Database models, migrations, seeders, and MySQL exports will be introduced in TFA2.
+-- ====================================================================

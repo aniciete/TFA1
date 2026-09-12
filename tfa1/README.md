@@ -1,61 +1,107 @@
-# CodeIgniter 4 Framework
+# Point-of-Sale (POS) Foundations
 
-## What is CodeIgniter?
+**Course:** IT0049 (Web System Technologies)  
+**Assessment:** Technical Formative Assessment 1 (TFA1)  
+**Framework:** CodeIgniter 4 (v4.7.4)  
+**Hosted Application:** [https://tfa1.freedev.app](https://tfa1.freedev.app)  
+**GitHub Repository:** [https://github.com/aniciete/TFA1](https://github.com/aniciete/TFA1)
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+---
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## 1. Project Overview
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+This project is the initial foundation of a Point-of-Sale (POS) system built using CodeIgniter 4 and the Model-View-Controller (MVC) architectural pattern. It focuses on establishing clear URL routing, controller actions, view layouts, and temporary in-memory static array data structures before introducing relational database persistence in future modules.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### Required Pages and Route Table
 
-## Important Change with index.php
+| URL Route | Controller Action | View Template | Purpose |
+| :--- | :--- | :--- | :--- |
+| `/` | `App\Controllers\Pages::home` | `pages/home.php` | POS application landing page with architectural overview and quick links |
+| `/about` | `App\Controllers\Pages::about` | `pages/about.php` | MVC request execution flow and design documentation |
+| `/customers` | `App\Controllers\Customers::index` | `customers/index.php` | Customer accounts directory listing full name, email, and phone |
+| `/users` | `App\Controllers\Users::index` | `users/index.php` | Staff user accounts directory listing username, full name, and role |
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+---
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## 2. Technical Stack & Prerequisites
 
-**Please** read the user guide for a better explanation of how CI4 works!
+- **Language:** PHP 8.2 or higher (tested on PHP 8.5)
+- **Required PHP Extensions:** `intl`, `mbstring`, `json`, `curl`
+- **Package Manager:** Composer 2.x
+- **Framework:** CodeIgniter 4.7.4
+- **Database:** None (TFA1 intentionally uses in-memory static PHP arrays inside controller methods; see `database/no_database_required.sql`)
 
-## Repository Management
+---
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## 3. Local Development Setup
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### 3.1 Clone the Repository
+```bash
+git clone https://github.com/aniciete/TFA1.git
+cd TFA1/tfa1
+```
 
-## Contributing
+### 3.2 Install Dependencies
+```bash
+composer install
+```
 
-We welcome contributions from the community.
+### 3.3 Configure Environment File
+Copy the example environment template to `.env`:
+```bash
+cp env .env
+```
+Ensure the following variables are set in `.env`:
+```ini
+CI_ENVIRONMENT = development
+app.baseURL = 'http://localhost:8080/'
+app.indexPage = ''
+```
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+### 3.4 Start the Local Development Server
+```bash
+php spark serve
+```
+Access the application locally at: **[http://localhost:8080](http://localhost:8080)**
 
-## Server Requirements
+---
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+## 4. Architectural & Data Design
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+### Static Data Source Implementation
+In accordance with the TFA1 laboratory instructions, the application does not connect to a database:
+- `App\Controllers\Customers::index()` defines a static array containing 5 customer profiles (`full_name`, `email`, `phone`).
+- `App\Controllers\Users::index()` defines a static array containing 5 staff profiles (`username`, `full_name`, `role`).
+- Views render these records dynamically using PHP `foreach` loops with `esc()` data sanitization.
+- The repository provides `database/no_database_required.sql` as a documented no-op reference fulfilling the submission rubric.
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+---
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+## 5. Running Automated Tests
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Run the test suite using PHPUnit:
+```bash
+vendor/bin/phpunit
+```
+The test suite validates:
+- System and path health (`HealthTest`).
+- HTTP 200 responses across all four defined routes (`PosFoundationsTest`).
+- Semantic HTML table rendering, accessible navigation (`aria-current="page"`), and record counts.
+- 404 handling on non-existent routes with auto-routing disabled.
+
+---
+
+## 6. InfinityFree Deployment Procedure
+
+This project includes automated packaging and shared-hosting configurations for InfinityFree Apache hosting:
+
+1. Generate a lean production build archive (excluding development packages and test suites):
+   ```bash
+   ./build-infinityfree-zip.sh
+   ```
+2. In the InfinityFree **Control Panel (VistaPanel)**:
+   - Ensure the PHP version is set to **PHP 8.2** or **PHP 8.3**.
+3. Open the **Online File Manager** and navigate into the `htdocs/` folder (or `tfa1.freedev.app/htdocs/`).
+4. Delete default placeholder files (`index2.html` or `default.php`).
+5. Upload `tfa1-infinityfree.zip` and select **Extract**.
+6. Verify the live site at: **[https://tfa1.freedev.app](https://tfa1.freedev.app)**.

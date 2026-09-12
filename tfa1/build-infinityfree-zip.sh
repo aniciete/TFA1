@@ -45,6 +45,15 @@ composer install --no-dev --optimize-autoloader --no-interaction --quiet
 zip -r "$OUTPUT_ZIP" . -x "*.DS_Store" > /dev/null
 rm -rf "$TMP_DIR"
 
-echo "==> Build successful!"
-echo "Archive: $OUTPUT_ZIP"
+# Validate package integrity
+echo "==> Verifying package contents..."
+for req in "public/index.php" ".htaccess" "public/.htaccess" "vendor/autoload.php" ".env"; do
+    if ! unzip -l "$OUTPUT_ZIP" | grep -q "$req"; then
+        echo "Error: Required file $req is missing from $OUTPUT_ZIP" >&2
+        exit 1
+    fi
+done
+
+echo "==> Verification passed! All required files are present."
+echo "==> Build successful: $OUTPUT_ZIP"
 ls -lh "$OUTPUT_ZIP"
