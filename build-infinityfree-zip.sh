@@ -26,7 +26,9 @@ cp "$DIR/.htaccess" "$TMP_DIR/.htaccess"
 [ -f "$DIR/public/.htaccess" ] && cp "$DIR/public/.htaccess" "$TMP_DIR/public/.htaccess"
 
 # Use production env for InfinityFree
-if [ -f "$DIR/.env.infinityfree" ]; then
+if [ -f "$DIR/env.production" ]; then
+    cp "$DIR/env.production" "$TMP_DIR/.env"
+elif [ -f "$DIR/.env.infinityfree" ]; then
     cp "$DIR/.env.infinityfree" "$TMP_DIR/.env"
 elif [ -f "$DIR/.env" ]; then
     cp "$DIR/.env" "$TMP_DIR/.env"

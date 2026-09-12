@@ -10,10 +10,31 @@ Thumbs.db
 # Other projects in workspace
 webdes/
 
+# Environment Configuration
+.env
+.env.*
+!.env.example*
+!env*
+
+# Assignment and Coursework Documents
+*.docx
+*.doc
+*.pdf
+
+# Internal Planning & Development Notes
+*PLAN*.md
+*_PLAN.md
+
+# Build, Test, and Archive Artifacts
+/build/
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+.phpunit.result.cache
+
 # CodeIgniter 4 standard ignores
 /vendor/
-.env
-.phpunit.result.cache
 /writable/cache/*
 !/writable/cache/index.html
 /writable/debugbar/*
@@ -24,10 +45,6 @@ webdes/
 !/writable/session/index.html
 /writable/uploads/*
 !/writable/uploads/index.html
-
-# Build and test artifacts
-/build/
-*.zip
 
 # Local Netlify folder
 .netlify
