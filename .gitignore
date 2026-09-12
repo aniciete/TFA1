@@ -30,4 +30,6 @@ tfa1/writable/uploads/*
 
 # Build and test artifacts
 tfa1/build/
+*.zip
+
 
