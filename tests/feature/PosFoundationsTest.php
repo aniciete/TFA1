@@ -23,6 +23,17 @@ final class PosFoundationsTest extends CIUnitTestCase
         $result->assertSee('User Accounts');
         $result->assertSee('About');
         $result->assertSee('aria-current="page"');
+
+        // Extended assertions for Bright-Market layout and landmarks
+        $result->assertSee('Skip to main content');
+        $result->assertSee('href="#main-content"');
+        $result->assertSee('role="banner"');
+        $result->assertSee('role="main"'); // or main id="main-content"
+        $result->assertSee('role="contentinfo"');
+        $result->assertSee('01');
+        $result->assertSee('Configured Routes');
+        $result->assertSee('assets/css/style.css');
+        $result->assertSee('favicon.svg');
     }
 
     public function testAboutPageReturnsOkAndDisplaysMvcFlow(): void
@@ -35,6 +46,15 @@ final class PosFoundationsTest extends CIUnitTestCase
         $result->assertSee('Data Storage Design Decision');
         $result->assertSee('static PHP arrays');
         $result->assertSee('aria-current="page"');
+
+        // Extended assertions for landmarks and connected 4-step flow
+        $result->assertSee('Skip to main content');
+        $result->assertSee('02');
+        $result->assertSee('1. Incoming URL');
+        $result->assertSee('2. Route Matching');
+        $result->assertSee('3. Controller Execution');
+        $result->assertSee('4. View Presentation');
+        $result->assertSee('ARCHITECTURAL MEMORANDUM');
     }
 
     public function testCustomersPageReturnsOkAndDisplaysRecords(): void
@@ -53,6 +73,15 @@ final class PosFoundationsTest extends CIUnitTestCase
         $result->assertSee('Sophia Lin');
         $result->assertSee('<table class="data-table">');
         $result->assertSee('scope="col"');
+
+        // Extended assertions for responsive data-labels and record count
+        $result->assertSee('Skip to main content');
+        $result->assertSee('aria-current="page"');
+        $result->assertSee('data-label="Full Name"');
+        $result->assertSee('data-label="Email Address"');
+        $result->assertSee('data-label="Phone Number"');
+        $result->assertSee('data-label="#"');
+        $result->assertSee('stat-giant');
     }
 
     public function testUsersPageReturnsOkAndDisplaysStaffRecords(): void
@@ -72,6 +101,26 @@ final class PosFoundationsTest extends CIUnitTestCase
         $result->assertSee('inv.navarro');
         $result->assertSee('<table class="data-table">');
         $result->assertSee('scope="col"');
+
+        // Extended assertions for responsive data-labels and role badges
+        $result->assertSee('Skip to main content');
+        $result->assertSee('aria-current="page"');
+        $result->assertSee('data-label="Username"');
+        $result->assertSee('data-label="Full Name"');
+        $result->assertSee('data-label="System Role"');
+        $result->assertSee('role-badge');
+        $result->assertSee('stat-giant');
+    }
+
+    public function testLocalAssetsAndFontsExist(): void
+    {
+        $publicPath = rtrim(PUBLICPATH, '/\\') . '/';
+        $this->assertFileExists($publicPath . 'assets/css/style.css');
+        $this->assertFileExists($publicPath . 'favicon.svg');
+        $this->assertFileExists($publicPath . 'assets/fonts/bricolage-grotesque-latin.woff2');
+        $this->assertFileExists($publicPath . 'assets/fonts/ibm-plex-mono-400.woff2');
+        $this->assertFileExists($publicPath . 'assets/fonts/ibm-plex-mono-500.woff2');
+        $this->assertFileExists($publicPath . 'assets/fonts/ibm-plex-mono-600.woff2');
     }
 
     public function testUndefinedRouteThrowsPageNotFound(): void
@@ -80,3 +129,4 @@ final class PosFoundationsTest extends CIUnitTestCase
         $this->get('non-existent-pos-route-404');
     }
 }
+

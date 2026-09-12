@@ -69,7 +69,7 @@
         </div>
     </header>
 
-    <main id="main-content" class="main-content" tabindex="-1">
+    <main id="main-content" class="main-content" role="main" tabindex="-1">
         <div class="container content-container">
             <?= $this->renderSection('content') ?>
         </div>
