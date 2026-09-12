@@ -24,3 +24,10 @@ tfa1/writable/session/*
 !tfa1/writable/session/index.html
 tfa1/writable/uploads/*
 !tfa1/writable/uploads/index.html
+
+# Local Netlify folder
+.netlify
+
+# Build and test artifacts
+tfa1/build/
+
