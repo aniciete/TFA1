@@ -15,6 +15,7 @@ rsync -av \
   --exclude="vendor" \
   --exclude="tests" \
   --exclude="build" \
+  --exclude="webdes" \
   --exclude="*.docx" \
   --exclude="*.zip" \
   --exclude="build-infinityfree-zip.sh" \
