@@ -1,0 +1,26 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Other projects in workspace
+webdes/
+
+# CodeIgniter 4 ignores
+tfa1/vendor/
+tfa1/.env
+tfa1/.phpunit.result.cache
+tfa1/writable/cache/*
+!tfa1/writable/cache/index.html
+tfa1/writable/debugbar/*
+!tfa1/writable/debugbar/index.html
+tfa1/writable/logs/*
+!tfa1/writable/logs/index.html
+tfa1/writable/session/*
+!tfa1/writable/session/index.html
+tfa1/writable/uploads/*
+!tfa1/writable/uploads/index.html
