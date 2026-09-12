@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= esc($title ?? 'POS Foundations') ?></title>
-    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+    <?php
+        $cssUrl = base_url('assets/css/style.css');
+        if (ENVIRONMENT === 'development' && ! empty($_SERVER['HTTP_HOST'])) {
+            $scheme = (! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+            $cssUrl = $scheme . '://' . $_SERVER['HTTP_HOST'] . '/assets/css/style.css';
+        }
+    ?>
+    <link rel="stylesheet" href="<?= esc($cssUrl) ?>">
 </head>
 <body>
     <header class="site-header">
