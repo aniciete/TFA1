@@ -4,22 +4,8 @@
 <div class="directory-container">
     <header class="directory-header">
         <div class="header-main">
-            <div class="tag-row">
-                <span class="market-tag">Directory // 01</span>
-                <span class="status-indicator">
-                    <span class="status-pip" aria-hidden="true"></span>
-                    <span class="status-label">In-Memory Store</span>
-                </span>
-            </div>
             <h1 class="page-title">Customer Accounts</h1>
-            <p class="section-lead">Registered retail and commercial client profiles.</p>
-        </div>
-        <div class="overlapping-stat" aria-label="Customer summary count">
-            <span class="stat-giant" aria-hidden="true"><?= sprintf('%02d', count($customers)) ?></span>
-            <div class="stat-meta">
-                <span class="stat-label">Total Records</span>
-                <span class="stat-value"><?= count($customers) ?></span>
-            </div>
+            <p class="section-lead">Registered retail and commercial client profiles. Total Records: <?= count($customers) ?>.</p>
         </div>
     </header>
 

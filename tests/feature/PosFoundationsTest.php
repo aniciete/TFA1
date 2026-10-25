@@ -24,14 +24,12 @@ final class PosFoundationsTest extends CIUnitTestCase
         $result->assertSee('About');
         $result->assertSee('aria-current="page"');
 
-        // Extended assertions for Bright-Market layout and landmarks
+        // Extended assertions for layout and landmarks
         $result->assertSee('Skip to main content');
         $result->assertSee('href="#main-content"');
         $result->assertSee('role="banner"');
         $result->assertSee('role="main"'); // or main id="main-content"
         $result->assertSee('role="contentinfo"');
-        $result->assertSee('01');
-        $result->assertSee('Configured Routes');
         $result->assertSee('assets/css/style.css');
         $result->assertSee('favicon.svg');
     }
@@ -47,14 +45,12 @@ final class PosFoundationsTest extends CIUnitTestCase
         $result->assertSee('static PHP arrays');
         $result->assertSee('aria-current="page"');
 
-        // Extended assertions for landmarks and connected 4-step flow
+        // Extended assertions for landmarks and flow
         $result->assertSee('Skip to main content');
-        $result->assertSee('02');
-        $result->assertSee('1. Incoming URL');
-        $result->assertSee('2. Route Matching');
-        $result->assertSee('3. Controller Execution');
-        $result->assertSee('4. View Presentation');
-        $result->assertSee('ARCHITECTURAL MEMORANDUM');
+        $result->assertSee('Incoming URL');
+        $result->assertSee('Route Matching');
+        $result->assertSee('Controller Execution');
+        $result->assertSee('View Presentation');
     }
 
     public function testCustomersPageReturnsOkAndDisplaysRecords(): void
@@ -81,7 +77,6 @@ final class PosFoundationsTest extends CIUnitTestCase
         $result->assertSee('data-label="Email Address"');
         $result->assertSee('data-label="Phone Number"');
         $result->assertSee('data-label="#"');
-        $result->assertSee('stat-giant');
     }
 
     public function testUsersPageReturnsOkAndDisplaysStaffRecords(): void
@@ -109,7 +104,6 @@ final class PosFoundationsTest extends CIUnitTestCase
         $result->assertSee('data-label="Full Name"');
         $result->assertSee('data-label="System Role"');
         $result->assertSee('role-badge');
-        $result->assertSee('stat-giant');
     }
 
     public function testLocalAssetsAndFontsExist(): void

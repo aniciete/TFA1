@@ -4,22 +4,8 @@
 <div class="directory-container">
     <header class="directory-header">
         <div class="header-main">
-            <div class="tag-row">
-                <span class="market-tag">Directory // 02</span>
-                <span class="status-indicator">
-                    <span class="status-pip" aria-hidden="true"></span>
-                    <span class="status-label">In-Memory Store</span>
-                </span>
-            </div>
             <h1 class="page-title">User Accounts</h1>
-            <p class="section-lead">Authorized internal personnel, operational roles, and system operators.</p>
-        </div>
-        <div class="overlapping-stat" aria-label="User summary count">
-            <span class="stat-giant" aria-hidden="true"><?= sprintf('%02d', count($users)) ?></span>
-            <div class="stat-meta">
-                <span class="stat-label">Total Users</span>
-                <span class="stat-value"><?= count($users) ?></span>
-            </div>
+            <p class="section-lead">Authorized internal personnel, operational roles, and system operators. Total Users: <?= count($users) ?>.</p>
         </div>
     </header>
 
